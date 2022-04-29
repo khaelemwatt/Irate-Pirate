@@ -38,8 +38,8 @@ public class MapController : MonoBehaviour
         FindPath(4, 4);
         GenerateWorld();
         docks = GameObject.FindGameObjectsWithTag("Dock");
-        // audioSource.clip = backMusic;
-        // audioSource.Play();
+        audioSource.clip = backMusic;
+        audioSource.Play();
         startGameLoop = true;
         
     }
@@ -61,8 +61,8 @@ public class MapController : MonoBehaviour
                     LockRoom();
                     if(playerRoom == "44"){
                         SpawnBoss();
-                        // audioSource.clip = bossMusic;
-                        // audioSource.Play();
+                        audioSource.clip = bossMusic;
+                        audioSource.Play();
                     }else{
                         SpawnEnemies();
                     }                    

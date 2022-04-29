@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Gun
+  - Enemy
+  - Dock
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2968796831
+    locked: 0
+  - name: Floor
+    uniqueID: 1967282339
+    locked: 0
+  - name: FloorGrass
+    uniqueID: 2528445199
+    locked: 0
+  - name: FloorDetails
+    uniqueID: 1808039053
+    locked: 0
+  - name: Middleground
+    uniqueID: 2620163989
+    locked: 0
+  - name: Player
+    uniqueID: 1592300747
+    locked: 0
+  - name: Foreground
+    uniqueID: 781333255
+    locked: 0
+  - name: Details
+    uniqueID: 1086093585
+    locked: 0
+  - name: Collider
+    uniqueID: 1466702039
+    locked: 0

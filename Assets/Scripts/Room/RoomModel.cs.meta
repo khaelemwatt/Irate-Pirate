@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 941d8d1b01442ae4d913bce5209ebec4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dock: {instanceID: 0}
+  - deepOcean: {instanceID: 0}
+  - ocean: {instanceID: 0}
+  - grass: {instanceID: 0}
+  - sand: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

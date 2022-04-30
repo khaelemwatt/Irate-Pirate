@@ -13,6 +13,7 @@ public class PlayerModel : MonoBehaviour
     public float rollCounter;
     public float rollCoolCounter;
     public float bulletForce = 3f;
+    public float health;
 
     //#----------# Int #----------#
     public int currentInvSlot;
@@ -20,6 +21,8 @@ public class PlayerModel : MonoBehaviour
 
     //#----------# Bool #----------#
     public bool isRolling;   
+    public bool isInvulnerable;
+    public bool isTouchingEnemy;
 
     //#----------# Unity Object #----------#
     public Rigidbody2D rb;
@@ -77,6 +80,10 @@ public class PlayerModel : MonoBehaviour
         return ref this.bulletForce;
     }
 
+    public ref float Health(){
+        return ref this.health;
+    }
+
     //#----------# Int #----------#
     public ref int CurrentInvSlot(){
         return ref this.currentInvSlot;
@@ -89,6 +96,14 @@ public class PlayerModel : MonoBehaviour
     //#----------# Bool #----------#
     public ref bool IsRolling(){
         return ref this.isRolling;
+    }
+
+    public ref bool IsInvulnerable(){
+        return ref this.isInvulnerable;
+    }
+
+    public ref bool IsTouchingEnemy(){
+        return ref this.isTouchingEnemy;
     }
 
     //#----------# Unity Object #----------#

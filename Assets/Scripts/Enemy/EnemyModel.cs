@@ -18,9 +18,11 @@ public class EnemyModel : MonoBehaviour
     //#----------# Bool #----------# 
     public bool isAttacking = false;
     public bool isWandering = false;
+    public bool isInvulnerable = false;
 
     //#----------# Unity Object #----------#
     public Rigidbody2D rb;
+    public Animator animator;
 
     //#----------# Vector2 #----------#
     public Vector2 wanderTarget;
@@ -67,9 +69,17 @@ public class EnemyModel : MonoBehaviour
         return ref this.isWandering;
     }
 
+    public ref bool IsInvulnerable(){
+        return ref this.isInvulnerable;
+    }
+
     //#----------# Unity Object #----------#
     public ref Rigidbody2D Rb(){
         return ref this.rb;
+    }
+
+    public ref Animator Animator(){
+        return ref this.animator;
     }
 
     //#----------# Vector2 #----------#

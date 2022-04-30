@@ -168,9 +168,12 @@ MonoBehaviour:
   rollCounter: 0
   rollCoolCounter: 0
   bulletForce: 3
+  health: 10
   currentInvSlot: 0
   currentRoom: 00
   isRolling: 0
+  isInvulnerable: 0
+  isTouchingEnemy: 0
   rb: {fileID: 7028063853044188758}
   cam: {fileID: 7028063853594185031}
   firePoint: {fileID: 0}

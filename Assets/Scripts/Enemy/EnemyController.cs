@@ -17,12 +17,27 @@ public class EnemyController : MonoBehaviour
     
     public void Damage(int damage)
     {
+        ref Animator animator = ref enemyModel.Animator();
+        ref bool isInvulnerable = ref enemyModel.isInvulnerable;
         ref int health = ref enemyModel.Health();
-        health -= damage;
-        if(health <= 0)
-        {
-            Destroy(gameObject);
-        }
+
+        if(isInvulnerable==false){
+            animator.SetBool("hit", true);
+            StartCoroutine(TurnOffHitAnim());
+            health -= damage;
+            if(health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }        
+    }
+
+    IEnumerator TurnOffHitAnim(){
+        enemyModel.isInvulnerable = true;
+        yield return new WaitForSeconds(0.2f);  
+        enemyModel.animator.SetBool("hit", false);      
+        yield return new WaitForSeconds(1);     
+        enemyModel.isInvulnerable = false;    
     }
 
     void FixedUpdate()
@@ -88,7 +103,7 @@ public class EnemyController : MonoBehaviour
     {
         ref Rigidbody2D rb = ref enemyModel.Rb();
         ref float movementSpeed = ref enemyModel.MovementSpeed();
-        rb.MovePosition(rb.position + dir * movementSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + dir.normalized * movementSpeed * Time.fixedDeltaTime);
     }
 
     public virtual IEnumerator attack()

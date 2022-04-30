@@ -219,14 +219,47 @@ public class PlayerController : MonoBehaviour
         Destroy(newBullet, 2f);
     }
 
+    public void Damage(float damage){        
+        ref float health = ref playerModel.Health();
+        Debug.Log("Hit");
+        health -= damage;
+        if(health<=0){
+            Destroy(gameObject);
+        }
+    }
+
     //#--------------------# ONCOLLISIONENTER2D #--------------------#
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        ref bool isInvulnerable = ref playerModel.IsInvulnerable();
+        ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
         GameObject enemy = collision.collider.gameObject;
-        //Debug.Log("10");
+        Debug.Log("Collision Enter");
+
         if(enemy.CompareTag("Enemy"))
         {
-            Debug.Log("Hit");
+            if(isInvulnerable == false){
+                isInvulnerable = true;
+                Damage(5f);
+                StartCoroutine(CheckForCollisionExit());
+            }
+            isTouchingEnemy = true;
         }
+    }
+
+    IEnumerator CheckForCollisionExit(){
+        yield return new WaitForSeconds(2);
+        while(playerModel.isTouchingEnemy){            
+            Damage(5f);
+            yield return new WaitForSeconds(2);
+        }   
+        playerModel.isInvulnerable = false;     
+    }
+
+    void OnCollisionExit2D(Collision2D other){
+        ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
+        Debug.Log("Collision Exit");
+        isTouchingEnemy = false;
+
     }
 }

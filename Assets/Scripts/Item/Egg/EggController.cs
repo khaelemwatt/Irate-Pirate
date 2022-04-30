@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeatController : MonoBehaviour
+public class EggController : MonoBehaviour
 {
     PlayerModel playerModel;
-    MeatModel meatModel;
+    EggModel eggModel;
 
     void Start(){
         playerModel = GameObject.FindWithTag("Player").GetComponent<PlayerModel>();
-        meatModel = gameObject.GetComponent<MeatModel>();
+        eggModel = gameObject.GetComponent<EggModel>();
     }
     
     public void ApplyStatEffect(){
-        ref float statValue = ref meatModel.StatValue();
+        ref float statValue = ref eggModel.StatValue();
         //Stat Effect Here
         Debug.Log("Increase");
     }

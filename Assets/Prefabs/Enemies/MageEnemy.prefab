@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4093638751094234738}
   - component: {fileID: 2799409862597475105}
   - component: {fileID: 7810800267964942277}
+  - component: {fileID: -5012798734236382719}
   m_Layer: 0
   m_Name: MageEnemy
   m_TagString: Enemy
@@ -161,13 +162,34 @@ MonoBehaviour:
   lineOfSight: 2
   distanceToPlayer: 0
   wanderCounter: 0
-  health: 30
+  health: 100
   isAttacking: 0
   isWandering: 0
+  isInvulnerable: 0
   rb: {fileID: 4093638751094234738}
+  animator: {fileID: -5012798734236382719}
   wanderTarget: {x: 0, y: 0}
   playerPos: {x: 0, y: 0}
   enemyPos: {x: 0, y: 0}
   wanderDir: {x: 0, y: 0}
   dirToPlayer: {x: 0, y: 0}
   player: {fileID: 7028063853044188756, guid: 576efa573b728b144b1595fd479273a4, type: 3}
+--- !u!95 &-5012798734236382719
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117324402565847468}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

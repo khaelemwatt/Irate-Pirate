@@ -17,6 +17,20 @@ public class ItemController : MonoBehaviour
                 MeatController meatController = gameObject.GetComponent<MeatController>();
                 meatController.ApplyStatEffect();
                 break;
+            case "Egg":
+                EggController eggController = gameObject.GetComponent<EggController>();
+                eggController.ApplyStatEffect();
+                break;
+        }
+        Destroy(gameObject);
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject player = collision.collider.gameObject;
+        if(player.CompareTag("Player"))
+        {
+            Consume();
         }
     }
 }

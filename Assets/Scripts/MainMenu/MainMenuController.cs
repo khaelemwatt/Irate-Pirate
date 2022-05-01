@@ -22,14 +22,14 @@ public class MainMenuController : MonoBehaviour
     public void Play(){     
         ref GameObject mainMenu = ref menuModel.MainMenu();
         ref GameObject loadingScreen = ref menuModel.LoadingScreen();
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         mainMenu.SetActive(false);
         loadingScreen.SetActive(true);
-        
+        StartCoroutine(Load())        ;
+        // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);        
     }
 
     IEnumerator Load(){
-        yield return new WaitForSeconds(2);
-        // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

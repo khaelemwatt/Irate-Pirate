@@ -8,13 +8,15 @@ public class PlayerController : MonoBehaviour
     PlayerModel playerModel;
     InventoryController inventoryController;
     InventoryModel inventoryModel;
+    PauseController pauseController;
 
     //#--------------------# START #--------------------#
     void Start()
     {
         playerModel = gameObject.GetComponent<PlayerModel>();
         inventoryController = gameObject.GetComponent<InventoryController>();
-        inventoryModel = gameObject.GetComponent<InventoryModel>();
+        inventoryModel = gameObject.GetComponent<InventoryModel>();        
+        pauseController = GameObject.FindWithTag("UI").GetComponent<PauseController>();
 
         // ref int currentInvSlot = ref playerModel.CurrentInvSlot();
         // ref Dictionary<string, GameObject> allWeapons = ref playerModel.AllWeapons();
@@ -227,7 +229,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Hit");
         health -= damage;
         if(health<=0){
-            Destroy(gameObject);
+            pauseController.DeathScreen();
         }
     }
 

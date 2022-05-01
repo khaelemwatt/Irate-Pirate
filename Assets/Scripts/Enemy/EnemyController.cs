@@ -64,7 +64,9 @@ public class EnemyController : MonoBehaviour
             if(isAttacking == false)
             {
                 StartCoroutine(attack());
-            }            
+            }    
+            Debug.Log("Calculate direction");
+            playerPos = player.transform.position;        
             dirToPlayer = playerPos - rb.position;
             moveTo(dirToPlayer);
         }else{
@@ -153,6 +155,7 @@ public class EnemyController : MonoBehaviour
 
     public virtual IEnumerator attack()
     {
+        Debug.Log("Attack");
         enemyModel.isAttacking = true;
         yield return new WaitForSeconds(1f);
         enemyModel.isAttacking = false;

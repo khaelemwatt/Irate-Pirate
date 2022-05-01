@@ -174,7 +174,7 @@ MonoBehaviour:
   enemyPos: {x: 0, y: 0}
   wanderDir: {x: 0, y: 0}
   dirToPlayer: {x: 0, y: 0}
-  player: {fileID: 0}
+  player: {fileID: 7028063853044188756, guid: 576efa573b728b144b1595fd479273a4, type: 3}
 --- !u!95 &1535922195976967751
 Animator:
   serializedVersion: 3

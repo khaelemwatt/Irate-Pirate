@@ -49,4 +49,10 @@ public class PauseController : MonoBehaviour
     public void QuitGame(){
         Application.Quit();
     }
+
+    public void DeathScreen(){
+        ref GameObject deathMenu = ref pauseModel.DeathMenu();
+        Time.timeScale = 0f;
+        deathMenu.SetActive(true);
+    }
 }

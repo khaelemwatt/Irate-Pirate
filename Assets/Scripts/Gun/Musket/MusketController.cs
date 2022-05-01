@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlunderbussController : MonoBehaviour
+public class MusketController : MonoBehaviour
 {
-    BlunderbussModel blunderbussModel;
+    MusketModel musketModel;
 
     void Start(){
-        blunderbussModel = gameObject.GetComponent<BlunderbussModel>();
+        musketModel = gameObject.GetComponent<MusketModel>();
     }
 
     //#--------------------# SHOOT #--------------------#
     public void Shoot()
     {
-        ref GameObject bullet = ref blunderbussModel.Bullet();
-        ref Transform firePoint = ref blunderbussModel.FirePoint();
-        ref float bulletForce = ref blunderbussModel.BulletForce();
-        ref AudioSource audioSource = ref blunderbussModel.AudioSource();
-        ref AudioClip shot = ref blunderbussModel.Shot();
+        ref GameObject bullet = ref musketModel.Bullet();
+        ref Transform firePoint = ref musketModel.FirePoint();
+        ref float bulletForce = ref musketModel.BulletForce();
+        ref AudioSource audioSource = ref musketModel.AudioSource();
+        ref AudioClip shot = ref musketModel.Shot();
 
         GameObject newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
         

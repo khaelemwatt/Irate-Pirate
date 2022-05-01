@@ -24,17 +24,24 @@ public class GunController : MonoBehaviour
         transform.right = direction;        
     }
 
-    public void ShootGun(){
+    public float ShootGun(){
         ref string gun = ref gunModel.Gun();
+        ref float reloadTime = ref gunModel.ReloadTime();
         switch(gun){
             case "Blunderbuss":
                 BlunderbussController blunderbussController = gameObject.GetComponent<BlunderbussController>();
+                BlunderbussModel blunderbussModel = gameObject.GetComponent<BlunderbussModel>();
                 blunderbussController.Shoot();
+                reloadTime = blunderbussModel.ReloadTime();
                 break;
             case "Musket":
-                // MusketController musketController = gameObject.GetComponent<MusketController>();
-                // musketController.Shoot();
+                MusketController musketController = gameObject.GetComponent<MusketController>();
+                MusketModel musketModel = gameObject.GetComponent<MusketModel>();
+                musketController.Shoot();
+                reloadTime = musketModel.ReloadTime();
                 break;
         }
+
+        return reloadTime;
     }    
 }

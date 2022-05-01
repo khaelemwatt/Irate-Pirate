@@ -65,7 +65,6 @@ public class EnemyController : MonoBehaviour
             {
                 StartCoroutine(attack());
             }    
-            Debug.Log("Calculate direction");
             playerPos = player.transform.position;        
             dirToPlayer = playerPos - rb.position;
             moveTo(dirToPlayer);

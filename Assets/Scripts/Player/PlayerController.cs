@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     InventoryController inventoryController;
     InventoryModel inventoryModel;
     PauseController pauseController;
+    PickupModel pickupModel;
 
     //#--------------------# START #--------------------#
     void Start()
@@ -17,29 +18,15 @@ public class PlayerController : MonoBehaviour
         inventoryController = gameObject.GetComponent<InventoryController>();
         inventoryModel = gameObject.GetComponent<InventoryModel>();        
         pauseController = GameObject.FindWithTag("UI").GetComponent<PauseController>();
-
-        // ref int currentInvSlot = ref playerModel.CurrentInvSlot();
-        // ref Dictionary<string, GameObject> allWeapons = ref playerModel.AllWeapons();
-        // ref List<GameObject> weapons = ref playerModel.Weapons();
-        // ref GameObject musket = ref playerModel.Musket();
-        // ref GameObject blunderbuss = ref playerModel.Blunderbuss();        
+     
         ref Animator playerAnimator = ref playerModel.PlayerAnimator();
+        ref float health = ref playerModel.Health();
+        ref float maxHealth = ref playerModel.MaxHealth();
 
         playerAnimator = gameObject.GetComponent<Animator>();
 
-        //#----------# Shoot #----------#  
-        // currentInvSlot = 0;
-        // weapons.RemoveAt(0);
-        // weapons.Add(blunderbuss);
-        
-        // createWeapon(currentInvSlot);
 
-        // //ID List for all weapons. Used to spawn weapons in
-        // allWeapons = new Dictionary<string, GameObject>()
-        // {
-        //     {"blunderbuss", blunderbuss},
-        //     {"musket", musket}
-        // };
+        health = maxHealth;
     }
 
     //#--------------------# UPDATE #--------------------#
@@ -49,7 +36,9 @@ public class PlayerController : MonoBehaviour
         ref float rollCoolCounter = ref playerModel.RollCoolCounter();
         ref float rollCounter = ref playerModel.RollCounter();
         ref float rollLength = ref playerModel.RollLength();
+        ref float reloadTime = ref playerModel.ReloadTime();
         ref bool isRolling = ref playerModel.IsRolling();
+        ref bool isReloading = ref playerModel.IsReloading();
         ref Vector2 mousePos = ref playerModel.MousePos();
         ref Vector2 mouseDir = ref playerModel.MouseDir();
         ref Rigidbody2D rb = ref playerModel.Rb();
@@ -75,8 +64,11 @@ public class PlayerController : MonoBehaviour
 
         //#----------# Shoot #----------#   
          if(Input.GetButtonDown("Fire1"))
-        {            
-            currentWeapon.GetComponent<GunController>().ShootGun();
+        {           
+            if(isReloading == false){
+                reloadTime = currentWeapon.GetComponent<GunController>().ShootGun();
+                StartCoroutine(Reload(reloadTime));
+            }            
         }
 
         if(Input.GetKeyDown("1"))
@@ -96,6 +88,7 @@ public class PlayerController : MonoBehaviour
         ref Vector2 mouseDir = ref playerModel.MouseDir();
         ref Vector2 movement = ref playerModel.Movement();
         ref float movementSpeed = ref playerModel.MovementSpeed();
+        ref float movementSpeedBuff = ref playerModel.MovementSpeedBuff();
         ref float rollCounter = ref playerModel.RollCounter();
         ref float rollSpeed = ref playerModel.RollSpeed();
         ref float rollCooldown = ref playerModel.RollCooldown();
@@ -105,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
         //#----------# Movement #----------#
         //Move Player
-        rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * (movementSpeed * movementSpeedBuff) * Time.fixedDeltaTime);
         if(movement.Equals(Vector3.zero)){
             playerAnimator.SetFloat("Speed", 0);
         }else{
@@ -129,64 +122,15 @@ public class PlayerController : MonoBehaviour
         {
             rollCoolCounter -= Time.deltaTime;
         }  
-
     }
 
-    //#--------------------# SWITCHTOWEAPON #--------------------#
-    // void switchToWeapon(int invSlot)
-    // {   
-    //     ref int currentInvSlot = ref playerModel.CurrentInvSlot();
-    //     ref List<GameObject> weapons = ref playerModel.Weapons();
-    //     ref GameObject currentWeapon = ref playerModel.CurrentWeapon();
-    //     if(currentInvSlot != invSlot && weapons.Count >= invSlot + 1)
-    //     {
-    //         if(weapons[invSlot] != null)
-    //         {
-    //             Destroy(currentWeapon);
-    //             createWeapon(invSlot);                
-    //             currentInvSlot = invSlot;
-    //         }            
-    //     }        
-    // }
-
-    // //#--------------------# CREATEWEAPON #--------------------#
-    // public void createWeapon(int invSlot){
-    //     ref List<GameObject> weapons = ref playerModel.Weapons();
-    //     ref GameObject currentWeapon = ref playerModel.CurrentWeapon();
-    //     ref GameObject weaponHolder = ref playerModel.WeaponHolder();
-
-    //     currentWeapon = Instantiate(weapons[invSlot], weaponHolder.transform.position, Quaternion.identity);
-    //     currentWeapon.transform.parent = weaponHolder.transform;
-    // }
-
-    //#--------------------# ADDWEAPON #--------------------#
-    // public void addWeapon(string gunName, Sprite gunSprite)
-    // {
-    //     ref List<GameObject> weapons = ref playerModel.Weapons();
-    //     ref Dictionary<string, GameObject> allWeapons = ref playerModel.AllWeapons();
-
-    //     int place = weapons.Count;
-    //     weapons.Add(allWeapons[gunName]);
-
-        //ALREADY COMMENTED
-        // invSlots[place].GetComponent<SpriteRenderer>().sprite = gunSprite;
-
-        // Vector3 invPosition = invSlots[place].transform.position;
-        // Vector3 invScale = invSlots[place].transform.localScale;
-        // invPosition = new Vector3(invPosition.x, invPosition.y - 0.056f, invPosition.z);
-        // invScale = new Vector3(2.57f, 2.57f, invScale.z);
-    //}
-
-    //#--------------------# ONTRIGGERENTER2D #--------------------#
-    public void OnTriggerEnter2D(Collider2D other)
-    {        
-        if(other.CompareTag("Gun")){
-            GameObject gun = other.gameObject;
-            inventoryController.addWeapon(gun);
-            Destroy(other.gameObject.transform.parent.gameObject);
-        }        
+    IEnumerator Reload(float reloadTime){
+        playerModel.isReloading = true;
+        yield return new WaitForSeconds(reloadTime);
+        playerModel.isReloading = false;
     }
 
+    
     public void CollideWithDock(GameObject dock){
         Debug.Log("Collision with Dock");
 
@@ -210,20 +154,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //#--------------------# SHOOT #--------------------#
-    // public void Shoot()
-    // {
-    //     ref GameObject bullet = ref playerModel.Bullet();
-    //     ref Transform firePoint = ref playerModel.FirePoint();
-    //     ref float bulletForce = ref playerModel.BulletForce();
-
-    //     GameObject newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
-        
-    //     Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
-    //     rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
-    //     Destroy(newBullet, 2f);
-    // }
-
     public void Damage(float damage){        
         ref float health = ref playerModel.Health();
         Debug.Log("Hit");
@@ -233,13 +163,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void RestoreHealth(float restore){
+        ref float health = ref playerModel.Health();
+        ref float maxHealth = ref playerModel.MaxHealth();
+
+        if((restore + health) >= maxHealth){
+            health = maxHealth;
+        }else{
+            health += restore;
+        }
+
+    }
+
     //#--------------------# ONCOLLISIONENTER2D #--------------------#
     public void OnCollisionEnter2D(Collision2D collision)
     {
         ref bool isInvulnerable = ref playerModel.IsInvulnerable();
         ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
         GameObject enemy = collision.collider.gameObject;
-        Debug.Log("Collision Enter");
 
         if(enemy.CompareTag("Enemy"))
         {
@@ -250,7 +191,20 @@ public class PlayerController : MonoBehaviour
             }
             isTouchingEnemy = true;
         }
+        
+        if(collision.collider.gameObject.CompareTag("Gun")){
+            GameObject gun = collision.collider.gameObject;
+            PickupModel pickupModel = gun.GetComponent<PickupModel>();
+            inventoryController.addWeapon(pickupModel.GunName());
+            Destroy(collision.gameObject.transform.parent.gameObject); 
+        }
     }
+
+    // //#--------------------# ONTRIGGERENTER2D #--------------------#
+    // public void OnCollisionEnter2D(Collision2D other)
+    // {
+                       
+    // }
 
     IEnumerator CheckForCollisionExit(){
         yield return new WaitForSeconds(2);
@@ -265,6 +219,5 @@ public class PlayerController : MonoBehaviour
         ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
         Debug.Log("Collision Exit");
         isTouchingEnemy = false;
-
     }
 }

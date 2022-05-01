@@ -27,7 +27,7 @@ public class InventoryController : MonoBehaviour
 
         currentInvSlot = 0;
         currentWeapon = startWeapon;
-        addWeapon(startWeapon);
+        addWeapon(startWeapon.GetComponent<GunModel>().Gun());
         createWeapon(currentInvSlot);        
     }
 
@@ -57,17 +57,18 @@ public class InventoryController : MonoBehaviour
         currentWeapon.transform.parent = weaponHolder.transform;
     }
 
-    public void addWeapon(GameObject gun)
+    public void addWeapon(string gun)
     {
         ref List<GameObject> weapons = ref inventoryModel.Weapons();
         ref Dictionary<string, GameObject> allWeapons = ref inventoryModel.AllWeapons();
         ref List<GameObject> invSlots = ref inventoryModel.InvSlots();
 
-        string gunName = gun.GetComponent<GunModel>().Gun();
+        //string gunName = gun.GetComponent<GunModel>().Gun();
 
         int place = weapons.Count;
-        weapons.Add(allWeapons[gunName]);
-        ref Sprite gunSprite = ref gun.GetComponent<GunModel>().GunSprite();
+        GameObject weaponToAdd = allWeapons[gun];
+        weapons.Add(weaponToAdd);
+        ref Sprite gunSprite = ref weaponToAdd.GetComponent<GunModel>().GunSprite();
         invSlots[place].GetComponent<Image>().sprite = gunSprite;
 
         // Vector3 invPosition = invSlots[place].transform.position;

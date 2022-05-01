@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1069082414413034454}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,8 +92,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1069082415537137169}
   m_Layer: 0
-  m_Name: BlunderbussPickup
-  m_TagString: Untagged
+  m_Name: MusketPickup
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,11 +124,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1069082415597000510}
   - component: {fileID: 1069082415597000507}
-  - component: {fileID: 1069082415597000508}
   - component: {fileID: 1069082415597000509}
+  - component: {fileID: 704725065}
+  - component: {fileID: 704725067}
   m_Layer: 0
-  m_Name: Blunderbuss_R
-  m_TagString: Untagged
+  m_Name: Musket
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,7 +188,7 @@ SpriteRenderer:
   m_SortingLayerID: 1592300747
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 158ebb80c88d53944a508fd3cf5d82fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95a5382acc663b7469e639926201b751, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -198,23 +199,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1069082415597000508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069082415597000511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4be817a7375bd445a475ea6c09625d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunName: blunderbuss
-  gunSprite: {fileID: 21300000, guid: 158ebb80c88d53944a508fd3cf5d82fc, type: 3}
-  rotationSpeed: 75
-  bobSpeed: 3.75
-  height: 0.02
 --- !u!61 &1069082415597000509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,7 +209,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.011375107, y: -0.01487514}
@@ -241,3 +225,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.10399945, y: 0.07074914}
   m_EdgeRadius: 0
+--- !u!114 &704725065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069082415597000511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f958431319f64db489dcf9f3cb6f7bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &704725067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069082415597000511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fab5cbb7a585048ac6a1932a134d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunName: Musket

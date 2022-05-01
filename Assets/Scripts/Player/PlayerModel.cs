@@ -7,6 +7,7 @@ public class PlayerModel : MonoBehaviour
     //#--------------------# VARIABLES #--------------------#
     //#----------# Float #----------#
     public float movementSpeed;
+    public float movementSpeedBuff;
     public float rollSpeed;
     public float rollLength;
     public float rollCooldown;
@@ -14,6 +15,9 @@ public class PlayerModel : MonoBehaviour
     public float rollCoolCounter;
     public float bulletForce = 3f;
     public float health;
+    public float maxHealth;
+    public float healthBuff;
+    public float reloadTime;
 
     //#----------# Int #----------#
     //public int currentInvSlot;
@@ -23,6 +27,7 @@ public class PlayerModel : MonoBehaviour
     public bool isRolling;   
     public bool isInvulnerable;
     public bool isTouchingEnemy;
+    public bool isReloading;
 
     //#----------# Unity Object #----------#
     public Rigidbody2D rb;
@@ -56,6 +61,10 @@ public class PlayerModel : MonoBehaviour
         return ref this.movementSpeed;
     }
 
+    public ref float MovementSpeedBuff(){
+        return ref this.movementSpeedBuff;
+    }
+
     public ref float RollSpeed(){
         return ref this.rollSpeed;
     }
@@ -84,6 +93,18 @@ public class PlayerModel : MonoBehaviour
         return ref this.health;
     }
 
+    public ref float MaxHealth(){
+        return ref this.maxHealth;
+    }
+
+    public ref float HealthBuff(){
+        return ref this.healthBuff;
+    }
+
+    public ref float ReloadTime(){
+        return ref this.reloadTime;
+    }
+
     //#----------# Int #----------#
     // public ref int CurrentInvSlot(){
     //     return ref this.currentInvSlot;
@@ -104,6 +125,10 @@ public class PlayerModel : MonoBehaviour
 
     public ref bool IsTouchingEnemy(){
         return ref this.isTouchingEnemy;
+    }
+
+    public ref bool IsReloading(){
+        return ref this.isReloading;
     }
 
     //#----------# Unity Object #----------#

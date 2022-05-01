@@ -2,36 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// GetIntersectionPointCoordinates function taken from:
-// https://blog.dakwamine.fr/?p=1943
-
-public class CameraMovement : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
-    public Camera cam;
-
-    public GameObject player;
-    
-    public float percentAlong;
-    public float maxMove;
-    public float moveSpeed;
-
-    public int quadrant;
-    
-    public Vector3 mousePos;
-    public Vector3 moveDir;
-    public Vector3 center;
-    public Vector3 mouseDir;
-
-    public Vector2 intersect;
+    CameraModel cameraModel;
 
     void Start(){
+        cameraModel = gameObject.GetComponent<CameraModel>();
+
+        ref Vector3 center = ref cameraModel.Center();
         center = new Vector3(Screen.width/2, Screen.height/2, 0);
     }
 
     void Update()
     {
-        mousePos = Input.mousePosition;
+        ref Vector3 mousePos = ref cameraModel.MousePos();
+        ref Vector3 mouseDir = ref cameraModel.MouseDir();
+        ref Vector2 intersect = ref cameraModel.Intersect();
+        ref Vector3 center = ref cameraModel.Center();
+        ref float percentAlong = ref cameraModel.PercentAlong();
 
+        mousePos = Input.mousePosition;
         mouseDir = mousePos - center;
 
         Vector2 bl = new Vector2(0, 0);
@@ -106,11 +96,18 @@ public class CameraMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        ref Camera cam = ref cameraModel.Cam();
+        ref GameObject player = ref cameraModel.Player();
+        ref Vector3 moveDir = ref cameraModel.MoveDir();
+        ref Vector3 mousePos = ref cameraModel.MousePos();
+        ref float maxMove = ref cameraModel.MaxMove();
+        ref float moveSpeed = ref cameraModel.MoveSpeed();        
+        ref float percentAlong = ref cameraModel.PercentAlong();
+
         moveDir = mousePos - cam.WorldToScreenPoint(player.transform.position);
         moveDir.Normalize();
         moveDir = new Vector3(moveDir.x * maxMove * percentAlong, moveDir.y * maxMove * percentAlong, 0);
         transform.position = Vector3.Lerp(transform.position, player.transform.position + moveDir, moveSpeed);
         transform.position = new Vector3(transform.position.x, transform.position.y, -10);
     }
-
 }

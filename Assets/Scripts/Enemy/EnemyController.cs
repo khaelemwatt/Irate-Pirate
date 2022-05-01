@@ -7,10 +7,13 @@ public class EnemyController : MonoBehaviour
     EnemyModel enemyModel;
 
     public void Start()
-    {
+    {                
         enemyModel = gameObject.GetComponent<EnemyModel>();
+        ref float distanceToPlayer = ref enemyModel.DistanceToPlayer();
 
         ref GameObject player = ref enemyModel.Player();
+
+        distanceToPlayer = 10f;
 
         player = GameObject.FindWithTag("Player");
     }
@@ -52,9 +55,9 @@ public class EnemyController : MonoBehaviour
         ref bool isAttacking = ref enemyModel.IsAttacking();
         ref bool isWandering = ref enemyModel.IsWandering();
 
-        playerPos = player.transform.position;
-        enemyPos = gameObject.transform.position;
-        distanceToPlayer = Vector3.Distance(enemyPos, playerPos);
+        // playerPos = player.transform.position;
+        // enemyPos = gameObject.transform.position;
+        // distanceToPlayer = Vector3.Distance(enemyPos, playerPos);
         //distanceToPlayer = (enemyPos - playerPos).magnitude;
         if(distanceToPlayer <= lineOfSight)
         {
@@ -101,9 +104,51 @@ public class EnemyController : MonoBehaviour
 
     void moveTo(Vector2 dir)
     {
+        // ref bool isTouchingBorder = ref enemyModel.IsTouchingBorder();
+        // if(isTouchingBorder == false){
+        //     ref Rigidbody2D rb = ref enemyModel.Rb();
+        //     ref float movementSpeed = ref enemyModel.MovementSpeed();
+        //     rb.MovePosition(rb.position + dir.normalized * movementSpeed * Time.fixedDeltaTime);
+        // }else{
+        //     ref Rigidbody2D rb = ref enemyModel.Rb();
+        //     ref float movementSpeed = ref enemyModel.MovementSpeed();
+        //     rb.MovePosition(rb.position + dir.normalized * -1 * movementSpeed * Time.fixedDeltaTime);
+        // }     
         ref Rigidbody2D rb = ref enemyModel.Rb();
         ref float movementSpeed = ref enemyModel.MovementSpeed();
-        rb.MovePosition(rb.position + dir.normalized * movementSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + dir.normalized * movementSpeed * Time.fixedDeltaTime); 
+    }
+
+    // public void OnCollisionEnter2D(Collision2D other){
+    //     if(other.collider.gameObject.CompareTag("Border")){
+    //         ref bool isTouchingBorder = ref enemyModel.IsTouchingBorder();
+    //         isTouchingBorder = true;
+    //     }        
+    // }
+
+    // public void OnCollisionExit2D(Collision2D other){
+    //     if(other.collider.gameObject.CompareTag("Border")){
+    //         ref bool isTouchingBorder = ref enemyModel.IsTouchingBorder();
+    //         isTouchingBorder = false;
+    //     } 
+    // }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {        
+        Debug.Log("trigger enter");
+        ref float distanceToPlayer = ref enemyModel.DistanceToPlayer();
+        if(other.CompareTag("MainCamera")){
+            Debug.Log("camera trigger enter");
+            distanceToPlayer = 0f;
+        }        
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {        
+        // ref float distanceToPlayer = ref enemyModel.DistanceToPlayer();
+        // if(other.CompareTag("MainCamera")){
+        //     distanceToPlayer = 10f;
+        // }        
     }
 
     public virtual IEnumerator attack()

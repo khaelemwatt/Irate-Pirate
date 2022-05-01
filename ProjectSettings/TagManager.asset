@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Dock
   - Item
+  - Border
   layers:
   - Default
   - TransparentFX
@@ -71,4 +72,7 @@ TagManager:
     locked: 0
   - name: Collider
     uniqueID: 1466702039
+    locked: 0
+  - name: UI
+    uniqueID: 1776064021
     locked: 0

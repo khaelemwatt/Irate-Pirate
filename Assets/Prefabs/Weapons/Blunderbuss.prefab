@@ -121,8 +121,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3758771063139179751}
-  - component: {fileID: -6608481347429506516}
-  - component: {fileID: 1209047606641813979}
+  - component: {fileID: 2796685789241934814}
+  - component: {fileID: 4974913177668497614}
+  - component: {fileID: 3683185603525442441}
+  - component: {fileID: 6152754657581953761}
   m_Layer: 0
   m_Name: Blunderbuss
   m_TagString: Gun
@@ -146,7 +148,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6608481347429506516
+--- !u!114 &2796685789241934814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,13 +157,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3758771063139179750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c2bf1a78fd3bf845a655db0f80d7fbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c85581d8cb002d4b944ae518f14aa6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4974913177668497614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758771063139179750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75871cb2149852f4596b957042e8e23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletForce: 3
   firePoint: {fileID: 3758771061328799562}
   bullet: {fileID: 1795940064057721235, guid: 85433a41d6fda2e42aedd5b7eff7a8b8, type: 3}
---- !u!114 &1209047606641813979
+--- !u!114 &3683185603525442441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,6 +184,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3758771063139179750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e0fb2015d9bbf419a246eebc3f4a74, type: 3}
+  m_Script: {fileID: 11500000, guid: 76187359f8be27c4fb87c1c641de540e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6152754657581953761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758771063139179750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a50d93cc6772e449646c58299b5bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: Blunderbuss
+  gunSprite: {fileID: 21300000, guid: 158ebb80c88d53944a508fd3cf5d82fc, type: 3}

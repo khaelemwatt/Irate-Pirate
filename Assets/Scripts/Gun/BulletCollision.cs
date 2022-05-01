@@ -8,9 +8,7 @@ using UnityEngine;
 //https://www.youtube.com/watch?v=LNLVOjbrQj4&list=PL8z36fSARS2MmrHH67XoYnI6OJdB8oPar&index=7
 
 
-
-
-public class BulletCollision : MonoBehaviour, IDamager
+public class BulletCollision : MonoBehaviour
 
 {
     //#--------------------# ONCOLLISIONENTER2D #--------------------#

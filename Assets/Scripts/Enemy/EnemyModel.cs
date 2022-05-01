@@ -19,6 +19,7 @@ public class EnemyModel : MonoBehaviour
     public bool isAttacking = false;
     public bool isWandering = false;
     public bool isInvulnerable = false;
+    public bool isTouchingBorder = false;
 
     //#----------# Unity Object #----------#
     public Rigidbody2D rb;
@@ -71,6 +72,10 @@ public class EnemyModel : MonoBehaviour
 
     public ref bool IsInvulnerable(){
         return ref this.isInvulnerable;
+    }
+
+    public ref bool IsTouchingBorder(){
+        return ref this.isTouchingBorder;
     }
 
     //#----------# Unity Object #----------#

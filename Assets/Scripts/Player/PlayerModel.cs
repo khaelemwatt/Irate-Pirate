@@ -16,7 +16,7 @@ public class PlayerModel : MonoBehaviour
     public float health;
 
     //#----------# Int #----------#
-    public int currentInvSlot;
+    //public int currentInvSlot;
     public string currentRoom;
 
     //#----------# Bool #----------#
@@ -37,17 +37,17 @@ public class PlayerModel : MonoBehaviour
     public Vector2 direction;
 
     //#----------# GameObject #----------#
-    public GameObject weaponHolder;
-    public GameObject currentWeapon;
-    public GameObject blunderbuss;
-    public GameObject musket;
-    public GameObject bullet; 
+    // public GameObject weaponHolder;
+    // public GameObject currentWeapon;
+    // public GameObject blunderbuss;
+    // public GameObject musket;
+    // public GameObject bullet; 
 
     //#----------# List/Dictionary #----------#
-    public Dictionary<string, GameObject> allWeapons;
+    // public Dictionary<string, GameObject> allWeapons;
 
-    public List<GameObject> weapons = new List<GameObject>();
-    public List<GameObject> invSlots = new List<GameObject>();
+    // public List<GameObject> weapons = new List<GameObject>();
+    // public List<GameObject> invSlots = new List<GameObject>();
 
     
     //#--------------------# REFERENCE METHODS #--------------------#
@@ -85,9 +85,9 @@ public class PlayerModel : MonoBehaviour
     }
 
     //#----------# Int #----------#
-    public ref int CurrentInvSlot(){
-        return ref this.currentInvSlot;
-    }
+    // public ref int CurrentInvSlot(){
+    //     return ref this.currentInvSlot;
+    // }
 
     public ref string CurrentRoom(){
         return ref this.currentRoom;
@@ -141,36 +141,36 @@ public class PlayerModel : MonoBehaviour
     }
 
     //#----------# GameObject #----------#
-    public ref GameObject WeaponHolder(){
-        return ref this.weaponHolder;
-    }
+    // public ref GameObject WeaponHolder(){
+    //     return ref this.weaponHolder;
+    // }
 
-    public ref GameObject CurrentWeapon(){
-        return ref this.currentWeapon;
-    }
+    // public ref GameObject CurrentWeapon(){
+    //     return ref this.currentWeapon;
+    // }
 
-    public ref GameObject Blunderbuss(){
-        return ref this.blunderbuss;
-    }
+    // public ref GameObject Blunderbuss(){
+    //     return ref this.blunderbuss;
+    // }
 
-    public ref GameObject Musket(){
-        return ref this.musket;
-    }
+    // public ref GameObject Musket(){
+    //     return ref this.musket;
+    // }
 
-    public ref GameObject Bullet(){
-        return ref this.bullet;
-    }
+    // public ref GameObject Bullet(){
+    //     return ref this.bullet;
+    // }
 
     //#----------# List/Dictionary #----------#
-    public ref Dictionary<string, GameObject> AllWeapons(){
-        return ref this.allWeapons;
-    }
+    // public ref Dictionary<string, GameObject> AllWeapons(){
+    //     return ref this.allWeapons;
+    // }
 
-    public ref List<GameObject> Weapons(){
-        return ref this.weapons;
-    }
+    // public ref List<GameObject> Weapons(){
+    //     return ref this.weapons;
+    // }
 
-    public ref List<GameObject> InvSlots(){
-        return ref this.invSlots;
-    }
+    // public ref List<GameObject> InvSlots(){
+    //     return ref this.invSlots;
+    // }
 }

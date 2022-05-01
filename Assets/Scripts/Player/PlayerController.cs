@@ -6,34 +6,38 @@ public class PlayerController : MonoBehaviour
 {   
     //#--------------------# VARIABLES #--------------------#
     PlayerModel playerModel;
+    InventoryController inventoryController;
+    InventoryModel inventoryModel;
 
     //#--------------------# START #--------------------#
     void Start()
     {
         playerModel = gameObject.GetComponent<PlayerModel>();
+        inventoryController = gameObject.GetComponent<InventoryController>();
+        inventoryModel = gameObject.GetComponent<InventoryModel>();
 
-        ref int currentInvSlot = ref playerModel.CurrentInvSlot();
-        ref Dictionary<string, GameObject> allWeapons = ref playerModel.AllWeapons();
-        ref List<GameObject> weapons = ref playerModel.Weapons();
-        ref GameObject musket = ref playerModel.Musket();
-        ref GameObject blunderbuss = ref playerModel.Blunderbuss();        
+        // ref int currentInvSlot = ref playerModel.CurrentInvSlot();
+        // ref Dictionary<string, GameObject> allWeapons = ref playerModel.AllWeapons();
+        // ref List<GameObject> weapons = ref playerModel.Weapons();
+        // ref GameObject musket = ref playerModel.Musket();
+        // ref GameObject blunderbuss = ref playerModel.Blunderbuss();        
         ref Animator playerAnimator = ref playerModel.PlayerAnimator();
 
         playerAnimator = gameObject.GetComponent<Animator>();
 
         //#----------# Shoot #----------#  
-        currentInvSlot = 0;
-        weapons.RemoveAt(0);
-        weapons.Add(blunderbuss);
+        // currentInvSlot = 0;
+        // weapons.RemoveAt(0);
+        // weapons.Add(blunderbuss);
         
-        createWeapon(currentInvSlot);
+        // createWeapon(currentInvSlot);
 
-        //ID List for all weapons. Used to spawn weapons in
-        allWeapons = new Dictionary<string, GameObject>()
-        {
-            {"blunderbuss", blunderbuss},
-            {"musket", musket}
-        };
+        // //ID List for all weapons. Used to spawn weapons in
+        // allWeapons = new Dictionary<string, GameObject>()
+        // {
+        //     {"blunderbuss", blunderbuss},
+        //     {"musket", musket}
+        // };
     }
 
     //#--------------------# UPDATE #--------------------#
@@ -48,7 +52,7 @@ public class PlayerController : MonoBehaviour
         ref Vector2 mouseDir = ref playerModel.MouseDir();
         ref Rigidbody2D rb = ref playerModel.Rb();
         ref Camera cam = ref playerModel.Cam();
-        ref GameObject currentWeapon = ref playerModel.CurrentWeapon();
+        ref GameObject currentWeapon = ref inventoryModel.CurrentWeapon();
 
         //#----------# Movement #----------#
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -70,17 +74,17 @@ public class PlayerController : MonoBehaviour
         //#----------# Shoot #----------#   
          if(Input.GetButtonDown("Fire1"))
         {            
-            currentWeapon.GetComponent<ShootGun>().Shoot();
+            currentWeapon.GetComponent<GunController>().ShootGun();
         }
 
         if(Input.GetKeyDown("1"))
-            switchToWeapon(0);
+            inventoryController.switchToWeapon(0);
 
         if(Input.GetKeyDown("2"))
-            switchToWeapon(1);
+            inventoryController.switchToWeapon(1);
             
         if(Input.GetKeyDown("3"))
-            switchToWeapon(2);
+            inventoryController.switchToWeapon(2);
     }
 
     //#--------------------# FIXED UPDATE #--------------------#
@@ -127,59 +131,58 @@ public class PlayerController : MonoBehaviour
     }
 
     //#--------------------# SWITCHTOWEAPON #--------------------#
-    void switchToWeapon(int invSlot)
-    {   
-        ref int currentInvSlot = ref playerModel.CurrentInvSlot();
-        ref List<GameObject> weapons = ref playerModel.Weapons();
-        ref GameObject currentWeapon = ref playerModel.CurrentWeapon();
-        if(currentInvSlot != invSlot && weapons.Count >= invSlot + 1)
-        {
-            if(weapons[invSlot] != null)
-            {
-                Destroy(currentWeapon);
-                createWeapon(invSlot);                
-                currentInvSlot = invSlot;
-            }            
-        }        
-    }
+    // void switchToWeapon(int invSlot)
+    // {   
+    //     ref int currentInvSlot = ref playerModel.CurrentInvSlot();
+    //     ref List<GameObject> weapons = ref playerModel.Weapons();
+    //     ref GameObject currentWeapon = ref playerModel.CurrentWeapon();
+    //     if(currentInvSlot != invSlot && weapons.Count >= invSlot + 1)
+    //     {
+    //         if(weapons[invSlot] != null)
+    //         {
+    //             Destroy(currentWeapon);
+    //             createWeapon(invSlot);                
+    //             currentInvSlot = invSlot;
+    //         }            
+    //     }        
+    // }
 
-    //#--------------------# CREATEWEAPON #--------------------#
-    public void createWeapon(int invSlot){
-        ref List<GameObject> weapons = ref playerModel.Weapons();
-        ref GameObject currentWeapon = ref playerModel.CurrentWeapon();
-        ref GameObject weaponHolder = ref playerModel.WeaponHolder();
+    // //#--------------------# CREATEWEAPON #--------------------#
+    // public void createWeapon(int invSlot){
+    //     ref List<GameObject> weapons = ref playerModel.Weapons();
+    //     ref GameObject currentWeapon = ref playerModel.CurrentWeapon();
+    //     ref GameObject weaponHolder = ref playerModel.WeaponHolder();
 
-        currentWeapon = Instantiate(weapons[invSlot], weaponHolder.transform.position, Quaternion.identity);
-        currentWeapon.transform.parent = weaponHolder.transform;
-    }
+    //     currentWeapon = Instantiate(weapons[invSlot], weaponHolder.transform.position, Quaternion.identity);
+    //     currentWeapon.transform.parent = weaponHolder.transform;
+    // }
 
     //#--------------------# ADDWEAPON #--------------------#
-    public void addWeapon(string gunName, Sprite gunSprite)
-    {
-        ref List<GameObject> weapons = ref playerModel.Weapons();
-        ref Dictionary<string, GameObject> allWeapons = ref playerModel.AllWeapons();
+    // public void addWeapon(string gunName, Sprite gunSprite)
+    // {
+    //     ref List<GameObject> weapons = ref playerModel.Weapons();
+    //     ref Dictionary<string, GameObject> allWeapons = ref playerModel.AllWeapons();
 
-        int place = weapons.Count;
-        weapons.Add(allWeapons[gunName]);
+    //     int place = weapons.Count;
+    //     weapons.Add(allWeapons[gunName]);
+
+        //ALREADY COMMENTED
         // invSlots[place].GetComponent<SpriteRenderer>().sprite = gunSprite;
 
         // Vector3 invPosition = invSlots[place].transform.position;
         // Vector3 invScale = invSlots[place].transform.localScale;
         // invPosition = new Vector3(invPosition.x, invPosition.y - 0.056f, invPosition.z);
         // invScale = new Vector3(2.57f, 2.57f, invScale.z);
-    }
+    //}
 
     //#--------------------# ONTRIGGERENTER2D #--------------------#
     public void OnTriggerEnter2D(Collider2D other)
     {        
         if(other.CompareTag("Gun")){
-            GunCollision gun = other.gameObject.GetComponent<GunCollision>();
-            string gunName = gun.getGun();
-            Sprite gunSprite = gun.getSprite();
-            addWeapon(gunName, gunSprite);
+            GameObject gun = other.gameObject;
+            inventoryController.addWeapon(gun);
             Destroy(other.gameObject.transform.parent.gameObject);
-        }
-        
+        }        
     }
 
     public void CollideWithDock(GameObject dock){
@@ -206,18 +209,18 @@ public class PlayerController : MonoBehaviour
     }
 
     //#--------------------# SHOOT #--------------------#
-    public void Shoot()
-    {
-        ref GameObject bullet = ref playerModel.Bullet();
-        ref Transform firePoint = ref playerModel.FirePoint();
-        ref float bulletForce = ref playerModel.BulletForce();
+    // public void Shoot()
+    // {
+    //     ref GameObject bullet = ref playerModel.Bullet();
+    //     ref Transform firePoint = ref playerModel.FirePoint();
+    //     ref float bulletForce = ref playerModel.BulletForce();
 
-        GameObject newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+    //     GameObject newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
         
-        Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
-        Destroy(newBullet, 2f);
-    }
+    //     Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
+    //     rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+    //     Destroy(newBullet, 2f);
+    // }
 
     public void Damage(float damage){        
         ref float health = ref playerModel.Health();

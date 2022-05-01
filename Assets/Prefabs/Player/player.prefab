@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 836684708}
   - component: {fileID: 1312850393}
   - component: {fileID: 1312850387}
+  - component: {fileID: 6431660649471719833}
+  - component: {fileID: 1312850388}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -169,7 +171,6 @@ MonoBehaviour:
   rollCoolCounter: 0
   bulletForce: 3
   health: 10
-  currentInvSlot: 0
   currentRoom: 00
   isRolling: 0
   isInvulnerable: 0
@@ -182,18 +183,6 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0}
   movement: {x: 0, y: 0}
   direction: {x: 0, y: 0}
-  weaponHolder: {fileID: 7028063854613478579}
-  currentWeapon: {fileID: 0}
-  blunderbuss: {fileID: 3758771063139179750, guid: 5c88e3d907999d6418b91ecbc532b6fa, type: 3}
-  musket: {fileID: 3302425161560708664, guid: 29808337b083657458838d69c69b406a, type: 3}
-  bullet: {fileID: 1795940064057721235, guid: 85433a41d6fda2e42aedd5b7eff7a8b8, type: 3}
-  weapons:
-  - {fileID: 3758771063139179750, guid: 5c88e3d907999d6418b91ecbc532b6fa, type: 3}
-  - {fileID: 3302425161560708664, guid: 29808337b083657458838d69c69b406a, type: 3}
-  invSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!82 &1312850393
 AudioSource:
   m_ObjectHideFlags: 0
@@ -309,6 +298,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6431660649471719833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028063853044188756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8266992004f45cb4abbf585804d641d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentInvSlot: 0
+  weaponHolder: {fileID: 7028063854613478579}
+  currentWeapon: {fileID: 0}
+  blunderbuss: {fileID: 3758771063139179750, guid: 5c88e3d907999d6418b91ecbc532b6fa, type: 3}
+  musket: {fileID: 3302425161560708664, guid: 29808337b083657458838d69c69b406a, type: 3}
+  startWeapon: {fileID: 3758771063139179750, guid: 5c88e3d907999d6418b91ecbc532b6fa, type: 3}
+  weapons: []
+  invSlots: []
+--- !u!114 &1312850388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028063853044188756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a4d2da78034454e9330b8f9a8e7e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7028063853594185029
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,8 +341,10 @@ GameObject:
   - component: {fileID: 7028063853594185048}
   - component: {fileID: 7028063853594185031}
   - component: {fileID: 7028063853594185030}
-  - component: {fileID: 1289524700}
-  - component: {fileID: 1584687883466205930}
+  - component: {fileID: 7433255340341396419}
+  - component: {fileID: 5153731574735087286}
+  - component: {fileID: 1387702046}
+  - component: {fileID: 1387702047}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -394,7 +417,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7028063853594185029}
   m_Enabled: 1
---- !u!114 &1289524700
+--- !u!114 &7433255340341396419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -403,7 +426,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7028063853594185029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4d356edae4d8a848b40266f86c5773f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e9021be058127141934c3a9b096290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5153731574735087286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028063853594185029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb819e298276a341ad03258e2784db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7028063853594185031}
@@ -417,7 +452,7 @@ MonoBehaviour:
   center: {x: 0, y: 0, z: 0}
   mouseDir: {x: 0, y: 0, z: 0}
   intersect: {x: 0, y: 0}
---- !u!114 &1584687883466205930
+--- !u!114 &1387702046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,7 +461,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7028063853594185029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4d356edae4d8a848b40266f86c5773f, type: 3}
+  m_Script: {fileID: 11500000, guid: beb819e298276a341ad03258e2784db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7028063853594185031}
@@ -440,6 +475,18 @@ MonoBehaviour:
   center: {x: 0, y: 0, z: 0}
   mouseDir: {x: 0, y: 0, z: 0}
   intersect: {x: 0, y: 0}
+--- !u!114 &1387702047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028063853594185029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9021be058127141934c3a9b096290b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7028063854613478579
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7028063854613478579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.041, y: -0.053, z: 0}
+  m_LocalPosition: {x: -0.037, y: -0.022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7028063853044188712}

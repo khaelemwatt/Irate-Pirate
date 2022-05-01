@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class MapController : MonoBehaviour
 {
@@ -33,13 +34,26 @@ public class MapController : MonoBehaviour
         level = new int[height, width];
 
         //Generate seed map which has random values in each cell to act as obstacles
-        GenerateDistanceMap(0, 0);
-        RandomValues();        
-        FindPath(4, 4);
-        GenerateWorld();
+        try{
+            GenerateDistanceMap(0, 0);
+            Print();
+            Debug.Log("#--------------------#");
+            RandomValues(); 
+            Print();
+            Debug.Log("#--------------------#");       
+            FindPath(4, 4);
+            Print();
+            Debug.Log("#--------------------#");
+            GenerateWorld();
+        }
+        catch{
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+        
         docks = GameObject.FindGameObjectsWithTag("Dock");
-        audioSource.clip = backMusic;
-        audioSource.Play();
+        // audioSource.clip = backMusic;
+        // audioSource.Play();
         startGameLoop = true;
         
     }

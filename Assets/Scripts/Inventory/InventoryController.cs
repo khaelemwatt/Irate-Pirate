@@ -28,6 +28,7 @@ public class InventoryController : MonoBehaviour
         currentInvSlot = 0;
         currentWeapon = startWeapon;
         addWeapon(startWeapon.GetComponent<GunModel>().Gun());
+        addWeapon(allWeapons["Musket"].GetComponent<GunModel>().Gun());
         createWeapon(currentInvSlot);        
     }
 

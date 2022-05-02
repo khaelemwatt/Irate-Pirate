@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerModel : MonoBehaviour
 {
     //#--------------------# VARIABLES #--------------------#
     //#----------# Float #----------#
     public float movementSpeed;
-    public float movementSpeedBuff;
     public float rollSpeed;
     public float rollLength;
     public float rollCooldown;
@@ -16,7 +17,6 @@ public class PlayerModel : MonoBehaviour
     public float bulletForce = 3f;
     public float health;
     public float maxHealth;
-    public float healthBuff;
     public float reloadTime;
 
     //#----------# Int #----------#
@@ -26,7 +26,6 @@ public class PlayerModel : MonoBehaviour
     //#----------# Bool #----------#
     public bool isRolling;   
     public bool isInvulnerable;
-    public bool isTouchingEnemy;
     public bool isReloading;
 
     //#----------# Unity Object #----------#
@@ -61,10 +60,6 @@ public class PlayerModel : MonoBehaviour
         return ref this.movementSpeed;
     }
 
-    public ref float MovementSpeedBuff(){
-        return ref this.movementSpeedBuff;
-    }
-
     public ref float RollSpeed(){
         return ref this.rollSpeed;
     }
@@ -97,10 +92,6 @@ public class PlayerModel : MonoBehaviour
         return ref this.maxHealth;
     }
 
-    public ref float HealthBuff(){
-        return ref this.healthBuff;
-    }
-
     public ref float ReloadTime(){
         return ref this.reloadTime;
     }
@@ -121,10 +112,6 @@ public class PlayerModel : MonoBehaviour
 
     public ref bool IsInvulnerable(){
         return ref this.isInvulnerable;
-    }
-
-    public ref bool IsTouchingEnemy(){
-        return ref this.isTouchingEnemy;
     }
 
     public ref bool IsReloading(){

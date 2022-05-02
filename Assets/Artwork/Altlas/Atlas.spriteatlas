@@ -43,7 +43,6 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 605e3c02db34e944da6141cdc0f5cd3b, type: 3}
     - {fileID: 2800000, guid: 2dc73bda64907b64dbdf48ed8da19ff2, type: 3}
     - {fileID: 2800000, guid: fc3d3149df177844bb009c7728598b43, type: 3}
     - {fileID: 2800000, guid: a098090db2b519c45878626c31596494, type: 3}
@@ -52,9 +51,6 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: -69595804843087666, guid: 605e3c02db34e944da6141cdc0f5cd3b, type: 3}
-  - {fileID: -3792414778354299255, guid: 605e3c02db34e944da6141cdc0f5cd3b, type: 3}
-  - {fileID: 423353227874054762, guid: 605e3c02db34e944da6141cdc0f5cd3b, type: 3}
   - {fileID: 6212381585193645058, guid: fc3d3149df177844bb009c7728598b43, type: 3}
   - {fileID: -2849483078942533492, guid: fc3d3149df177844bb009c7728598b43, type: 3}
   - {fileID: 2130704437460187890, guid: 2dc73bda64907b64dbdf48ed8da19ff2, type: 3}
@@ -2108,9 +2104,6 @@ SpriteAtlas:
   - {fileID: 5299848801359929203, guid: a098090db2b519c45878626c31596494, type: 3}
   - {fileID: -5618816565101236410, guid: a098090db2b519c45878626c31596494, type: 3}
   m_PackedSpriteNamesToIndex:
-  - MageEnemy
-  - enemy_skeleton
-  - player_0
   - deepOcean
   - shallowOcean
   - grassCurvedTopRight

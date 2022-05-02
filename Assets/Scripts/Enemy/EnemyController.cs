@@ -5,13 +5,20 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {   
     EnemyModel enemyModel;
+    PlayerModel playerModel;
+    PlayerController playerController;
+    ItemList itemList;
 
     public void Start()
     {                
         enemyModel = gameObject.GetComponent<EnemyModel>();
+        playerModel = GameObject.FindWithTag("Player").GetComponent<PlayerModel>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        itemList = GameObject.FindWithTag("ItemList").GetComponent<ItemList>();
+
         ref float distanceToPlayer = ref enemyModel.DistanceToPlayer();
 
-        ref GameObject player = ref enemyModel.Player();
+        ref GameObject player = ref enemyModel.Player();        
 
         distanceToPlayer = 10f;
 
@@ -30,9 +37,33 @@ public class EnemyController : MonoBehaviour
             health -= damage;
             if(health <= 0)
             {
-                Destroy(gameObject);
+                DropItem();
+                Die();
             }
         }        
+    }
+
+    public void DropItem(){
+        ref List<GameObject> allItems = ref itemList.AllItems();
+        
+        System.Random rand = new System.Random();
+        Debug.Log("Spawn Chance");
+        if(rand.Next(0, 9) <= 1){
+            int randomNumber = rand.Next(0, allItems.Count);
+            Instantiate(allItems[randomNumber], gameObject.transform.position, Quaternion.identity);            
+        }
+    }
+
+    public void Die(){
+        ref string enemyName = ref enemyModel.EnemyName();
+        switch(enemyName){
+            case "Skull":
+                gameObject.GetComponent<SkullController>().Die();
+                break;
+            case "Goldbeard":
+                gameObject.GetComponent<GoldbeardController>().Die();
+                break;
+        }
     }
 
     IEnumerator TurnOffHitAnim(){
@@ -61,10 +92,10 @@ public class EnemyController : MonoBehaviour
         //distanceToPlayer = (enemyPos - playerPos).magnitude;
         if(distanceToPlayer <= lineOfSight)
         {
-            if(isAttacking == false)
-            {
-                StartCoroutine(attack());
-            }    
+            // if(isAttacking == false)
+            // {
+            //     StartCoroutine(attack());
+            // }    
             playerPos = player.transform.position;        
             dirToPlayer = playerPos - rb.position;
             moveTo(dirToPlayer);
@@ -83,12 +114,14 @@ public class EnemyController : MonoBehaviour
         enemyModel.wanderDir = enemyModel.wanderTarget - enemyModel.rb.position;
         //As long as player isnt in our line of sight we continue to wander
         while(enemyModel.wanderCounter > 0)
-        {            
+        {         
+            enemyModel.animator.SetFloat("speed", 10f);   
             moveTo(enemyModel.wanderDir);
             yield return new WaitForSeconds(0.01f);
             enemyModel.wanderCounter -= Time.deltaTime;
         }
         yield return new WaitForSeconds(1f);
+        enemyModel.animator.SetFloat("speed", 10f);
         enemyModel.isWandering= false;
     }
 
@@ -135,11 +168,9 @@ public class EnemyController : MonoBehaviour
     // }
 
     public void OnTriggerEnter2D(Collider2D other)
-    {        
-        Debug.Log("trigger enter");
+    {
         ref float distanceToPlayer = ref enemyModel.DistanceToPlayer();
         if(other.CompareTag("MainCamera")){
-            Debug.Log("camera trigger enter");
             distanceToPlayer = 0f;
         }        
     }
@@ -152,11 +183,50 @@ public class EnemyController : MonoBehaviour
         // }        
     }
 
-    public virtual IEnumerator attack()
-    {
-        Debug.Log("Attack");
-        enemyModel.isAttacking = true;
-        yield return new WaitForSeconds(1f);
-        enemyModel.isAttacking = false;
+    public void OnCollisionEnter2D(Collision2D other){        
+        ref bool isTouchingPlayer = ref enemyModel.IsTouchingPlayer();
+        ref bool isInvulnerable = ref playerModel.IsInvulnerable();
+        ref bool isAttacking = ref enemyModel.IsAttacking();
+        Debug.Log("Collide");
+        if(other.collider.gameObject.CompareTag("Player")){
+            isAttacking = true;
+            if(isInvulnerable == false){
+                isInvulnerable = true;
+                Attack();
+                StartCoroutine(CheckForCollisionExit());
+            }
+            isTouchingPlayer = true;
+        }
+    }
+
+    IEnumerator CheckForCollisionExit(){
+        yield return new WaitForSeconds(2);
+        while(enemyModel.isTouchingPlayer){            
+            Attack();
+            yield return new WaitForSeconds(2);
+        }   
+        playerModel.isInvulnerable = false;     
+    }
+
+    void OnCollisionExit2D(Collision2D other){
+        ref bool isTouchingPlayer = ref enemyModel.IsTouchingPlayer();
+        ref bool isAttacking = ref enemyModel.IsAttacking();
+    
+        isTouchingPlayer = false;
+        isAttacking = false;
+    }
+
+    void Attack(){
+        ref string enemyName = ref enemyModel.EnemyName();
+        switch(enemyModel.enemyName){
+            case "Skull":
+                SkullController skullController = gameObject.GetComponent<SkullController>();
+                skullController.Attack(playerController);
+                break;
+            case "Goldbeard":
+                GoldbeardController goldbeardController = gameObject.GetComponent<GoldbeardController>();
+                goldbeardController.Attack(playerController);
+                break;
+        }
     }
 }

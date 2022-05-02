@@ -52,8 +52,8 @@ public class MapController : MonoBehaviour
         }
         
         docks = GameObject.FindGameObjectsWithTag("Dock");
-        // audioSource.clip = backMusic;
-        // audioSource.Play();
+        audioSource.clip = backMusic;
+        audioSource.Play();
         startGameLoop = true;
         
     }
@@ -117,7 +117,7 @@ public class MapController : MonoBehaviour
         int col = int.Parse(playerRoom[1].ToString());
 
         Vector3Int roomCenter = new Vector3Int(col*50 + 10, row*50 + 10, 0);     
-        int numberOfEnemies = 1;//rand.Next(3, 7);    
+        int numberOfEnemies = rand.Next(3, 7);    
 
         for(var i=0; i<numberOfEnemies; i++){
             //Generate random position in room            

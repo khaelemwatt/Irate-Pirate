@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MeatController : MonoBehaviour
 {
-    PlayerModel playerModel;
+    PlayerController playerController;
     MeatModel meatModel;
 
     void Start(){
-        playerModel = GameObject.FindWithTag("Player").GetComponent<PlayerModel>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         meatModel = gameObject.GetComponent<MeatModel>();
     }
     
     public void ApplyStatEffect(){
         ref float statValue = ref meatModel.StatValue();
-        //Stat Effect Here
+        playerController.RestoreHealth(statValue);
         Debug.Log("Increase");
     }
 }

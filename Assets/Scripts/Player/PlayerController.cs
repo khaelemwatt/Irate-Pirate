@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {   
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     InventoryModel inventoryModel;
     PauseController pauseController;
     PickupModel pickupModel;
+    HealthbarController healthbarController;
 
     //#--------------------# START #--------------------#
     void Start()
@@ -18,15 +20,18 @@ public class PlayerController : MonoBehaviour
         inventoryController = gameObject.GetComponent<InventoryController>();
         inventoryModel = gameObject.GetComponent<InventoryModel>();        
         pauseController = GameObject.FindWithTag("UI").GetComponent<PauseController>();
+        healthbarController = GameObject.FindWithTag("Healthbar").GetComponent<HealthbarController>();
      
         ref Animator playerAnimator = ref playerModel.PlayerAnimator();
         ref float health = ref playerModel.Health();
-        ref float maxHealth = ref playerModel.MaxHealth();
+        ref float maxHealth = ref playerModel.MaxHealth();               
 
         playerAnimator = gameObject.GetComponent<Animator>();
 
-
         health = maxHealth;
+
+        healthbarController.SetMaxHealth((int)maxHealth);
+        healthbarController.SetHealth((int)health); 
     }
 
     //#--------------------# UPDATE #--------------------#
@@ -65,7 +70,7 @@ public class PlayerController : MonoBehaviour
         //#----------# Shoot #----------#   
          if(Input.GetButtonDown("Fire1"))
         {           
-            if(isReloading == false){
+            if(isReloading == false && Time.timeScale != 0f){
                 reloadTime = currentWeapon.GetComponent<GunController>().ShootGun();
                 StartCoroutine(Reload(reloadTime));
             }            
@@ -88,7 +93,6 @@ public class PlayerController : MonoBehaviour
         ref Vector2 mouseDir = ref playerModel.MouseDir();
         ref Vector2 movement = ref playerModel.Movement();
         ref float movementSpeed = ref playerModel.MovementSpeed();
-        ref float movementSpeedBuff = ref playerModel.MovementSpeedBuff();
         ref float rollCounter = ref playerModel.RollCounter();
         ref float rollSpeed = ref playerModel.RollSpeed();
         ref float rollCooldown = ref playerModel.RollCooldown();
@@ -98,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
         //#----------# Movement #----------#
         //Move Player
-        rb.MovePosition(rb.position + movement * (movementSpeed * movementSpeedBuff) * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
         if(movement.Equals(Vector3.zero)){
             playerAnimator.SetFloat("Speed", 0);
         }else{
@@ -113,6 +117,7 @@ public class PlayerController : MonoBehaviour
 
             if(rollCounter <= 0)
             {
+                
             isRolling = false;
             rollCoolCounter = rollCooldown;
             }
@@ -161,6 +166,7 @@ public class PlayerController : MonoBehaviour
         if(health<=0){
             pauseController.DeathScreen();
         }
+        healthbarController.SetHealth((int)health);
     }
 
     public void RestoreHealth(float restore){
@@ -173,24 +179,24 @@ public class PlayerController : MonoBehaviour
             health += restore;
         }
 
+        healthbarController.SetHealth((int)health);
     }
 
     //#--------------------# ONCOLLISIONENTER2D #--------------------#
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        ref bool isInvulnerable = ref playerModel.IsInvulnerable();
-        ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
-        GameObject enemy = collision.collider.gameObject;
+        // ref bool isInvulnerable = ref playerModel.IsInvulnerable();
+        // ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
 
-        if(enemy.CompareTag("Enemy"))
-        {
-            if(isInvulnerable == false){
-                isInvulnerable = true;
-                Damage(5f);
-                StartCoroutine(CheckForCollisionExit());
-            }
-            isTouchingEnemy = true;
-        }
+        // if(enemy.CompareTag("Enemy"))
+        // {
+        //     if(isInvulnerable == false){
+        //         isInvulnerable = true;
+        //         Damage(5f);
+        //         StartCoroutine(CheckForCollisionExit());
+        //     }
+        //     isTouchingEnemy = true;
+        // }
         
         if(collision.collider.gameObject.CompareTag("Gun")){
             GameObject gun = collision.collider.gameObject;
@@ -200,24 +206,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // //#--------------------# ONTRIGGERENTER2D #--------------------#
-    // public void OnCollisionEnter2D(Collision2D other)
-    // {
-                       
+    // IEnumerator CheckForCollisionExit(){
+    //     yield return new WaitForSeconds(2);
+    //     while(playerModel.isTouchingEnemy){            
+    //         Damage(5f);
+    //         yield return new WaitForSeconds(2);
+    //     }   
+    //     playerModel.isInvulnerable = false;     
     // }
 
-    IEnumerator CheckForCollisionExit(){
-        yield return new WaitForSeconds(2);
-        while(playerModel.isTouchingEnemy){            
-            Damage(5f);
-            yield return new WaitForSeconds(2);
-        }   
-        playerModel.isInvulnerable = false;     
-    }
-
-    void OnCollisionExit2D(Collision2D other){
-        ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
-        Debug.Log("Collision Exit");
-        isTouchingEnemy = false;
-    }
+    // void OnCollisionExit2D(Collision2D other){
+    //     ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
+    //     Debug.Log("Collision Exit");
+    //     isTouchingEnemy = false;
+    // }
 }

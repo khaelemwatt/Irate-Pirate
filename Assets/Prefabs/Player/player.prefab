@@ -171,14 +171,16 @@ MonoBehaviour:
   rollCoolCounter: 0
   bulletForce: 3
   health: 10
+  maxHealth: 0
+  reloadTime: 0
   currentRoom: 00
   isRolling: 0
   isInvulnerable: 0
-  isTouchingEnemy: 0
+  isReloading: 0
   rb: {fileID: 7028063853044188758}
   cam: {fileID: 7028063853594185031}
   firePoint: {fileID: 0}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 1312850387}
   mouseDir: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
   movement: {x: 0, y: 0}

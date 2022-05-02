@@ -21,7 +21,6 @@ public class PauseController : MonoBehaviour
             }else{
                 PauseGame();
             }
-
         }
     }
 

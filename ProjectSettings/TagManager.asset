@@ -11,6 +11,11 @@ TagManager:
   - Border
   - UI
   - Bullet
+  - ItemList
+  - ItemImage
+  - ItemText
+  - ItemDesc
+  - Healthbar
   layers:
   - Default
   - TransparentFX

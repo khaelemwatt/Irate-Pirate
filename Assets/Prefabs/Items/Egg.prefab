@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5228f3e7a093a9f459ab9fa4fbfb0694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statValue: 0
+  statValue: 5
 --- !u!114 &3374655389919712042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: Egg
+  itemDesc: Max Health Up
+  itemPickupImage: {fileID: 846151779017925018, guid: 5df0ecbcf5b5c5f4ebe43429681bdb47, type: 3}
+  itemPickupText: {fileID: 7637179956688675902, guid: 56b34e1be218a734c8d4a0d3d720917b, type: 3}
+  itemPickupDesc: {fileID: 8157956694748640599, guid: 20bbf6d46315c6b48a6a8f19652b6e43, type: 3}
 --- !u!61 &3374655389919712040
 BoxCollider2D:
   m_ObjectHideFlags: 0

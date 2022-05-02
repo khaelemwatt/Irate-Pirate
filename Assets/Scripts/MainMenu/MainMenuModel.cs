@@ -6,6 +6,7 @@ public class MainMenuModel : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject loadingScreen;
+    public GameObject creditScreen;
 
     public AudioSource audioSource;
     public AudioClip mainMusic;
@@ -16,6 +17,10 @@ public class MainMenuModel : MonoBehaviour
 
     public ref GameObject LoadingScreen(){
         return ref this.loadingScreen;
+    }
+
+    public ref GameObject CreditScreen(){
+        return ref this.creditScreen;
     }
 
     public ref AudioSource AudioSource(){

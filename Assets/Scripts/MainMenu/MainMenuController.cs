@@ -28,6 +28,22 @@ public class MainMenuController : MonoBehaviour
         // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);        
     }
 
+    public void Credits(){
+        ref GameObject mainMenu = ref menuModel.MainMenu();
+        ref GameObject creditScreen = ref menuModel.CreditScreen();
+
+        mainMenu.SetActive(false);
+        creditScreen.SetActive(true);
+    }
+
+    public void Back(){
+        ref GameObject mainMenu = ref menuModel.MainMenu();
+        ref GameObject creditScreen = ref menuModel.CreditScreen();
+
+        mainMenu.SetActive(true);
+        creditScreen.SetActive(false);
+    }
+
     IEnumerator Load(){
         yield return new WaitForSeconds(1f);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);

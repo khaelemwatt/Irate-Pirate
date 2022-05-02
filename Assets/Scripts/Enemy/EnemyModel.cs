@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EnemyModel : MonoBehaviour
 {
+
+    public string enemyName;
 
     //#----------# Float #----------#
     public float movementSpeed = 1f;
@@ -20,6 +21,7 @@ public class EnemyModel : MonoBehaviour
     public bool isWandering = false;
     public bool isInvulnerable = false;
     public bool isTouchingBorder = false;
+    public bool isTouchingPlayer = false;
 
     //#----------# Unity Object #----------#
     public Rigidbody2D rb;
@@ -38,8 +40,12 @@ public class EnemyModel : MonoBehaviour
     //#----------# System #----------#
     public System.Random rand = new System.Random();
 
-
     //#--------------------# REFERENCE METHODS #--------------------#
+
+    public ref string EnemyName(){
+        return ref this.enemyName;
+    }
+
     //#----------# Float #----------#
     public ref float MovementSpeed(){
         return ref this.movementSpeed;
@@ -76,6 +82,10 @@ public class EnemyModel : MonoBehaviour
 
     public ref bool IsTouchingBorder(){
         return ref this.isTouchingBorder;
+    }
+
+    public ref bool IsTouchingPlayer(){
+        return ref this.isTouchingPlayer;
     }
 
     //#----------# Unity Object #----------#
@@ -115,7 +125,7 @@ public class EnemyModel : MonoBehaviour
     //#----------# System #----------#
     public ref System.Random Rand(){
         return ref this.rand;
-    }
+    }    
 }
 
 

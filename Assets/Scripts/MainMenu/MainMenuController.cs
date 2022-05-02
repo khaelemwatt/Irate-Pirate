@@ -44,6 +44,10 @@ public class MainMenuController : MonoBehaviour
         creditScreen.SetActive(false);
     }
 
+    public void Quit(){
+        Application.Quit();
+    }
+
     IEnumerator Load(){
         yield return new WaitForSeconds(1f);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);

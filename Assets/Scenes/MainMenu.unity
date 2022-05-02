@@ -2511,7 +2511,7 @@ MonoBehaviour:
     Free Vector\u201D by \u201CHarry Adhi\u201D on \u201CVecteezy.com\u201D (License:
     Free Download with Attributiuon Required\n- Main game Tileset is \u201CSlates
     [32x32px Orthogonal Tileset by Ivan Voirol]\u201D on \"opengameart.org\" (License:
-    CC-BY 4.0)\n- Food/Enemies from \u201CTiny RPG Assets\u201D by \u201CPixeltier\u201D
+    CC-BY 4.0)\n- Food and Skull Sprites from \u201CTiny RPG Assets\u201D by \u201CPixeltier\u201D
     on \"itch.io\" (License: Purchased by me)\n- Main menu theme is \u201CAirship
     Thunderchild\u201D by \u201COtto Halmen\u201D on \u201Copengameart.org\u201D
     (License: OGA-BY 3.0)\n- Background Music is \u201CMystical Enigmatic Background
@@ -2522,12 +2522,15 @@ MonoBehaviour:
     (License: CC0)\n- Musket shot sound effect is \u201CGun Sound Effects\u201D by
     \u201CKonitaTutorials\u201D on \u201Copengameart.org\u201D (License: CC-BY-SA
     3.0)\n- Musket Sprite made by me using \"pixlr.com\"\n- Blunderbuss Sprite made
-    by me using \"pixlr.com\"\n- Player Character Sprite is \u201CClassic Pirate
-    Captain [Animated]\u201D by \u201CDezras Dragons\u201D on \u201Copengameart.org\u201D
-    (License: CC0) (edited by me)\n- Goldbeard sprite taken from \u201CUndead Pirate
-    Roguelike\u201D by \u201CAmberFallStudio\u201D on \u201Copengameart.org\u201D
-    (License CC0)\n- Health bar taken from \u201CHow to make a HEALTH BAR in Unity!\u201D
-    YouTube tutorial by \u201CBrackeys\u201D on \u201Cyoutube.com\u201D"
+    by me using \"pixlr.com\"\n- Bullet Sprite made by me using \"pixlr.com\"\n-
+    Player Character Sprite is \u201CClassic Pirate Captain [Animated]\u201D by \u201CDezras
+    Dragons\u201D on \u201Copengameart.org\u201D (License: CC0) (edited by me)\n-
+    Goldbeard and Parrot sprite taken from \u201CUndead Pirate Roguelike\u201D by
+    \u201CAmberFallStudio\u201D on \u201Copengameart.org\u201D (License CC0)\n- Health
+    bar taken from \u201CHow to make a HEALTH BAR in Unity!\u201D YouTube tutorial
+    by \u201CBrackeys\u201D on \u201Cyoutube.com\u201D\nDISCLAIMER: ALL WORKS USED
+    (UNLESS OTHERWISE STATED) DO NOT BELONG TO ME AND ARE USED UNDER THEIR RESPECTIVE
+    LICENSES AND ATTRIBUTION HAS BEEN GIVEN"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2554,13 +2557,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9.6
-  m_fontSizeBase: 9.6
+  m_fontSize: 8.21
+  m_fontSizeBase: 8.21
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

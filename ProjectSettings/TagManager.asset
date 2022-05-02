@@ -17,6 +17,7 @@ TagManager:
   - ItemDesc
   - Healthbar
   - PlayerHitbox
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

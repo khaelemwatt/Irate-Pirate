@@ -22,6 +22,6 @@ public class ParrotController : MonoBehaviour
         
         Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
-        Destroy(newBullet, 1f);
+        Destroy(newBullet, 2f);
     }
 }

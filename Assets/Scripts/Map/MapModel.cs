@@ -19,11 +19,11 @@ public class MapModel : MonoBehaviour
 
     //#----------# List #----------#
     public List<Tuple<string, bool>> rooms;
+    public List<GameObject> enemy;
 
     //#----------# GameObject #----------#    
     public GameObject[] enemies;
     public GameObject player;
-    public GameObject enemy;
     public GameObject bossEnemy;
     public GameObject[] docks;
 
@@ -63,7 +63,7 @@ public class MapModel : MonoBehaviour
         return ref this.player;
     }
 
-    public ref GameObject Enemy(){
+    public ref List<GameObject> Enemy(){
         return ref this.enemy;
     }
 

@@ -23,6 +23,9 @@ public class EnemyController : MonoBehaviour
         distanceToPlayer = 10f;
 
         player = GameObject.FindWithTag("Player");
+        ref bool isAttacking = ref enemyModel.IsAttacking();
+        isAttacking = true;
+        StartCoroutine(AttackCooldown());
     }
     
     public void Damage(int damage)
@@ -62,6 +65,9 @@ public class EnemyController : MonoBehaviour
                 break;
             case "Goldbeard":
                 gameObject.GetComponent<GoldbeardController>().Die();
+                break;
+            case "Parrot":
+                gameObject.GetComponent<ParrotController>().Die();
                 break;
         }
     }
@@ -115,7 +121,7 @@ public class EnemyController : MonoBehaviour
     }
 
     IEnumerator AttackCooldown(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         enemyModel.isAttacking = false;
     }
 

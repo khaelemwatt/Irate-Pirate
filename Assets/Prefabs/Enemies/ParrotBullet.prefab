@@ -15,10 +15,9 @@ GameObject:
   - component: {fileID: 958436086711084011}
   - component: {fileID: 5251534929692553982}
   - component: {fileID: 5251534929692553983}
-  - component: {fileID: 5590570798912233370}
   m_Layer: 0
   m_Name: ParrotBullet
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5005,15 +5004,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5590570798912233370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5768344526568706710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c440f3eb4307a248894b5a3b6c4f8c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

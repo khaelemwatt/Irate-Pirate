@@ -206,6 +206,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
+    // void OnTriggerEnter2D(Collider2D other){
+    //     Debug.Log("bullet hit player");
+    //     GameObject bullet = other.gameObject;
+    //     if(bullet.CompareTag("EnemyBullet")){
+    //         Damage(5f);
+    //         Destroy(bullet);
+    //     }
+    // }
+
     // IEnumerator CheckForCollisionExit(){
     //     yield return new WaitForSeconds(2);
     //     while(playerModel.isTouchingEnemy){            

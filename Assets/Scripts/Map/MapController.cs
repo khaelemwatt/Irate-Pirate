@@ -107,7 +107,7 @@ public class MapController : MonoBehaviour
     }
 
     void SpawnEnemies(){
-        ref GameObject enemy = ref mapModel.Enemy();
+        ref List<GameObject> enemy = ref mapModel.Enemy();
         ref GameObject[] enemies = ref mapModel.Enemies();
         ref string playerRoom = ref playerModel.CurrentRoom();
         ref System.Random rand = ref mapModel.Rand();
@@ -117,13 +117,23 @@ public class MapController : MonoBehaviour
         int col = int.Parse(playerRoom[1].ToString());
 
         Vector3Int roomCenter = new Vector3Int(col*50 + 10, row*50 + 10, 0);     
-        int numberOfEnemies = rand.Next(3, 7);    
-
+        int numberOfEnemies = 1;//rand.Next(3, 7);    
+        //Spawn Skulls
         for(var i=0; i<numberOfEnemies; i++){
             //Generate random position in room            
             Vector3Int spawnPos = new Vector3Int(rand.Next(1, 20), rand.Next(1, 20), 0);
             spawnPos += roomCenter;
-            GameObject newEnemy = Instantiate(enemy, roomView.Collision().GetCellCenterWorld(spawnPos), Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemy[0], roomView.Collision().GetCellCenterWorld(spawnPos), Quaternion.identity);
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+
+        numberOfEnemies = rand.Next(1, 2);    
+        //Spawn Parrots
+        for(var i=0; i<numberOfEnemies; i++){
+            //Generate random position in room            
+            Vector3Int spawnPos = new Vector3Int(rand.Next(1, 20), rand.Next(1, 20), 0);
+            spawnPos += roomCenter;
+            GameObject newEnemy = Instantiate(enemy[1], roomView.Collision().GetCellCenterWorld(spawnPos), Quaternion.identity);
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
         }
     }

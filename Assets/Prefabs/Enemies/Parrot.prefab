@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 3219630495711611052}
   m_Layer: 0
   m_Name: Parrot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,11 +180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Parrot
-  movementSpeed: 1
+  movementSpeed: 0.5
   lineOfSight: 2
   distanceToPlayer: 0
   wanderCounter: 0
-  health: 0
+  health: 5
   isAttacking: 0
   isWandering: 0
   isInvulnerable: 0
@@ -223,5 +223,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  bulletForce: 4
+  bulletForce: 2.5
   bullet: {fileID: 5768344526568706710, guid: 2a48eda2e86051146acf951fbab0cad5, type: 3}

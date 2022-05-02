@@ -4,6 +4,11 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
+//Referenced these for map making
+//https://www.youtube.com/watch?v=ryISV_nH8qw
+//https://www.youtube.com/watch?v=ADqavOdd16c&t=330s
+//https://learn.unity.com/tutorial/using-rule-tiles
+
 public class MapController : MonoBehaviour
 {
     RoomController roomController;

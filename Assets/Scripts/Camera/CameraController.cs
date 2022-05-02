@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//GetIntersectionCoordinates() method directly taken from https://blog.dakwamine.fr/?p=1943
+
 public class CameraController : MonoBehaviour
 {
     CameraModel cameraModel;

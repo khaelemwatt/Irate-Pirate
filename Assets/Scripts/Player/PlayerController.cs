@@ -184,20 +184,7 @@ public class PlayerController : MonoBehaviour
 
     //#--------------------# ONCOLLISIONENTER2D #--------------------#
     public void OnCollisionEnter2D(Collision2D collision)
-    {
-        // ref bool isInvulnerable = ref playerModel.IsInvulnerable();
-        // ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
-
-        // if(enemy.CompareTag("Enemy"))
-        // {
-        //     if(isInvulnerable == false){
-        //         isInvulnerable = true;
-        //         Damage(5f);
-        //         StartCoroutine(CheckForCollisionExit());
-        //     }
-        //     isTouchingEnemy = true;
-        // }
-        
+    {        
         if(collision.collider.gameObject.CompareTag("Gun")){
             GameObject gun = collision.collider.gameObject;
             PickupModel pickupModel = gun.GetComponent<PickupModel>();
@@ -205,30 +192,4 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject.transform.parent.gameObject); 
         }
     }
-
-    
-
-    // void OnTriggerEnter2D(Collider2D other){
-    //     Debug.Log("bullet hit player");
-    //     GameObject bullet = other.gameObject;
-    //     if(bullet.CompareTag("EnemyBullet")){
-    //         Damage(5f);
-    //         Destroy(bullet);
-    //     }
-    // }
-
-    // IEnumerator CheckForCollisionExit(){
-    //     yield return new WaitForSeconds(2);
-    //     while(playerModel.isTouchingEnemy){            
-    //         Damage(5f);
-    //         yield return new WaitForSeconds(2);
-    //     }   
-    //     playerModel.isInvulnerable = false;     
-    // }
-
-    // void OnCollisionExit2D(Collision2D other){
-    //     ref bool isTouchingEnemy = ref playerModel.IsTouchingEnemy();
-    //     Debug.Log("Collision Exit");
-    //     isTouchingEnemy = false;
-    // }
 }

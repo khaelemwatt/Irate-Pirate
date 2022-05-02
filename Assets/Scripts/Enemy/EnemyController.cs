@@ -207,6 +207,7 @@ public class EnemyController : MonoBehaviour
         ref bool isInvulnerable = ref playerModel.IsInvulnerable();
         ref bool isAttacking = ref enemyModel.IsAttacking();
         if(other.collider.gameObject.CompareTag("PlayerHitbox")){
+            Debug.Log("Attack");
             isAttacking = true;
             if(isInvulnerable == false){
                 isInvulnerable = true;
@@ -245,6 +246,7 @@ public class EnemyController : MonoBehaviour
                 skullController.Attack(playerController);
                 break;
             case "Goldbeard":
+                Debug.Log("Goldbeard Attack");
                 GoldbeardController goldbeardController = gameObject.GetComponent<GoldbeardController>();
                 goldbeardController.Attack(playerController);
                 break;

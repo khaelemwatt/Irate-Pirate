@@ -76,6 +76,7 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        ref string enemyName = ref enemyModel.EnemyName();
         ref GameObject player = ref enemyModel.Player();
         ref Rigidbody2D rb = ref enemyModel.Rb();
         ref Vector2 playerPos = ref enemyModel.PlayerPos();
@@ -98,12 +99,24 @@ public class EnemyController : MonoBehaviour
             // }    
             playerPos = player.transform.position;        
             dirToPlayer = playerPos - rb.position;
+            if(enemyName == "Parrot" && isAttacking == false){
+                Debug.Log("Parrot Attack");
+                ParrotController parrotController = gameObject.GetComponent<ParrotController>();
+                parrotController.Attack(playerController, dirToPlayer, gameObject.transform.position);
+                isAttacking = true;
+                StartCoroutine(AttackCooldown());
+            }
             moveTo(dirToPlayer);
         }else{
             if(isWandering==false){
                 StartCoroutine(wander()); 
             }                       
         }
+    }
+
+    IEnumerator AttackCooldown(){
+        yield return new WaitForSeconds(1f);
+        enemyModel.isAttacking = false;
     }
 
     IEnumerator wander()
@@ -187,8 +200,7 @@ public class EnemyController : MonoBehaviour
         ref bool isTouchingPlayer = ref enemyModel.IsTouchingPlayer();
         ref bool isInvulnerable = ref playerModel.IsInvulnerable();
         ref bool isAttacking = ref enemyModel.IsAttacking();
-        Debug.Log("Collide");
-        if(other.collider.gameObject.CompareTag("Player")){
+        if(other.collider.gameObject.CompareTag("PlayerHitbox")){
             isAttacking = true;
             if(isInvulnerable == false){
                 isInvulnerable = true;
@@ -201,23 +213,26 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CheckForCollisionExit(){
         yield return new WaitForSeconds(2);
+        playerModel.isInvulnerable = false; 
         while(enemyModel.isTouchingPlayer){            
             Attack();
             yield return new WaitForSeconds(2);
-        }   
-        playerModel.isInvulnerable = false;     
+        }               
     }
 
     void OnCollisionExit2D(Collision2D other){
         ref bool isTouchingPlayer = ref enemyModel.IsTouchingPlayer();
         ref bool isAttacking = ref enemyModel.IsAttacking();
-    
-        isTouchingPlayer = false;
-        isAttacking = false;
+        if(other.collider.gameObject.CompareTag("PlayerHitbox")){
+            isTouchingPlayer = false;
+            isAttacking = false;
+        }
+        
     }
 
     void Attack(){
         ref string enemyName = ref enemyModel.EnemyName();
+        ref GameObject player = ref enemyModel.Player();
         switch(enemyModel.enemyName){
             case "Skull":
                 SkullController skullController = gameObject.GetComponent<SkullController>();

@@ -43,15 +43,17 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
+
         ref GameObject itemPickupImage = ref itemModel.ItemPickupImage();
         ref GameObject itemPickupText = ref itemModel.ItemPickupText();
         ref GameObject itemPickupDesc = ref itemModel.ItemPickupDesc();
 
-        GameObject player = collision.collider.gameObject;
-        if(player.CompareTag("Player"))
+        GameObject player = collision.gameObject;
+        if(player.CompareTag("PlayerHitbox"))
         {
+            Debug.Log("Pickup Item");
             itemPickupImage.GetComponent<Image>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
             itemPickupImage.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             itemPickupText.GetComponent<Text>().text = gameObject.GetComponent<ItemModel>().Item();

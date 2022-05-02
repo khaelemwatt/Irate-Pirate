@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1130852038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130852039}
+  - component: {fileID: 1130852040}
+  m_Layer: 0
+  m_Name: Hitbox
+  m_TagString: PlayerHitbox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1130852039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130852038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7028063853044188712}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1130852040
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130852038}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03732048, y: -0.018660203}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.108237356, y: 0.16912875}
+  m_EdgeRadius: 0
 --- !u!1 &7028063853044188756
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +68,6 @@ GameObject:
   - component: {fileID: 7028063853044188712}
   - component: {fileID: 7028063853044188759}
   - component: {fileID: 7028063853044188758}
-  - component: {fileID: 7028063853044188714}
   - component: {fileID: 836684707}
   - component: {fileID: 836684708}
   - component: {fileID: 1312850393}
@@ -38,6 +94,7 @@ Transform:
   m_Children:
   - {fileID: 7028063853594185048}
   - {fileID: 7028063854613478580}
+  - {fileID: 1130852039}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -113,32 +170,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &7028063853044188714
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7028063853044188756}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03890662, y: -0.017639577}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.29}
-    newSize: {x: 0.16, y: 0.15}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.11186597, y: 0.1645329}
-  m_EdgeRadius: 0
 --- !u!114 &836684707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,8 +201,8 @@ MonoBehaviour:
   rollCounter: 0
   rollCoolCounter: 0
   bulletForce: 3
-  health: 10
-  maxHealth: 0
+  health: 0
+  maxHealth: 20
   reloadTime: 0
   currentRoom: 00
   isRolling: 0
@@ -182,7 +213,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   playerAnimator: {fileID: 1312850387}
   mouseDir: {x: 0, y: 0}
-  mousePos: {x: 0, y: 0}
+  mousePos: {x: 0.21, y: 0}
   movement: {x: 0, y: 0}
   direction: {x: 0, y: 0}
 --- !u!82 &1312850393
@@ -319,7 +350,10 @@ MonoBehaviour:
   musket: {fileID: 3302425161560708664, guid: 29808337b083657458838d69c69b406a, type: 3}
   startWeapon: {fileID: 3758771063139179750, guid: 5c88e3d907999d6418b91ecbc532b6fa, type: 3}
   weapons: []
-  invSlots: []
+  invSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1312850388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +381,7 @@ GameObject:
   - component: {fileID: 5153731574735087286}
   - component: {fileID: 1387702046}
   - component: {fileID: 1387702047}
+  - component: {fileID: 6814857034485507065}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -489,6 +524,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9021be058127141934c3a9b096290b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &6814857034485507065
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028063853594185029}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0024114847, y: -0.002411604}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.6543028, y: 1.496773}
+  m_EdgeRadius: 0
 --- !u!1 &7028063854613478579
 GameObject:
   m_ObjectHideFlags: 0

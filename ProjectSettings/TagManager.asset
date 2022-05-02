@@ -16,6 +16,7 @@ TagManager:
   - ItemText
   - ItemDesc
   - Healthbar
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX

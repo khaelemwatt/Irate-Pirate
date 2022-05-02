@@ -38,7 +38,7 @@ public class DockController : MonoBehaviour
     {
         ref bool locked = ref dockModel.Locked();
         ref Vector3Int direction = ref dockModel.Direction();
-        GameObject player = collision.collider.gameObject;
+        GameObject player = collision.collider.gameObject.transform.parent.gameObject;
         playerController = player.GetComponent<PlayerController>();
         if(player.CompareTag("Player") && locked == false)
         {
